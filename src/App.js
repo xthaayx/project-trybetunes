@@ -3,7 +3,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
-import Login from './pages/Login';
+import Login from './components/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import Search from './pages/Search';
