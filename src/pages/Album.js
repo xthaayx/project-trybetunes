@@ -20,10 +20,10 @@ class Album extends React.Component {
   handleMusic = async () => {
     const { match } = this.props;
     const { id } = match.params;
-    const [cap, ...xablau] = await getMusics(id);
+    const [cap, ...music] = await getMusics(id);
     this.setState({
       capa: cap,
-      musics: xablau,
+      musics: music,
     });
   }
 
