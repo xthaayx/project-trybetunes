@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   constructor() {
@@ -9,6 +9,7 @@ class MusicCard extends React.Component {
 
     this.state = {
       loading: false,
+      checked: false,
     };
   }
 
@@ -21,12 +22,20 @@ class MusicCard extends React.Component {
     this.setState({
       loading: false,
     });
+    this.handleFavorite();
   };
+
+  handleFavorite = async () => {
+    const { musics } = this.props;
+    this.setState({
+      checked: true,
+    });
+    await getFavoriteSongs(musics);
+  }
 
   render() {
     const { trackName, previewUrl, trackId } = this.props;
-    const { loading } = this.state;
-    // console.log(trackID);
+    const { loading, checked } = this.state;
     return (
       <div>
         { loading && <Loading /> }
@@ -48,6 +57,7 @@ class MusicCard extends React.Component {
             type="checkbox"
             data-testid={ `checkbox-music-${trackId}` }
             onClick={ this.handleClick }
+            checked={ checked }
           />
         </label>
       </div>
